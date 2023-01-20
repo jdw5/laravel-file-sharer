@@ -20,6 +20,7 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/files', [FileController::class, 'index'])->name('files');
+Route::post('/files/signed', [FileController::class, 'signed'])->name('files.signed');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

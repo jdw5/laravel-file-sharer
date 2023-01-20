@@ -1,4 +1,5 @@
 <template>
+{{ response }}
     <AppLayout>
         <div>
             <div class="mb-8">
@@ -6,7 +7,7 @@
                 </Uploader>
             </div>
             <div>
-                <h2 class="font-mediun pb-3 border-b-2 text-gray-700">
+                <h2 class="pb-3 text-gray-700 border-b-2 font-mediun">
                     Your Files
                 </h2>
                 <template v-if="files.data.length">
@@ -22,6 +23,7 @@
                 </template>
             </div>
         </div>
+        <button @click="send">Click me</button>
     </AppLayout>
 </template>
 
@@ -29,11 +31,21 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import AppFile from '@/Components/AppFile.vue'
 import Uploader from '@/Components/Uploader.vue'
+import { router } from '@inertiajs/vue3'
 
 const props = defineProps({
-    files: Array
+    files: Array,
+    response: Object
 })
 
+const send = () => {
+    router.post('/files/signed',
+        {
+            name: 'name',
+            extension: 'png'
+        }
+    )
+}
 </script>
 
 <style>
