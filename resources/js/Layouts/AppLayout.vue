@@ -3,28 +3,41 @@
         <header class="flex -mx-3 -mt-3 flex-wrap md:flex-nowrap items-center justify-between mb-6">
             <ul class="flex items-center gap-x-2">
                 <li>
-                    <a href="" class="text-sm inline-block p-3 text-gray-800">
+                    <Link href="" class="text-sm inline-block p-3 text-gray-800">
                         Home
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="" class="text-sm inline-block p-3 text-gray-800">
+                    <Link href="" class="text-sm inline-block p-3 text-gray-800">
                         Your Files
-                    </a>
+                    </Link>
                 </li>
             </ul>
             <ul class="flex items-center gap-x-2">
-                <li>
-                    <a :href="route('login')" class="text-sm inline-block p-3 text-gray-800">
-                        Sign in
-                    </a>
-                </li>
-                <li>
-                    <a :href="route('register')" class="text-sm inline-block p-3 text-gray-800">
-                        Create account
-                    </a>
-                </li>
-
+                <template v-if="$page.props.auth.user">
+                    <li>
+                        <Link :href="route('profile.edit')" class="text-sm inline-block p-3 text-gray-800">
+                            Account
+                        </Link>
+                    </li> 
+                    <li>
+                        <Link :href="route('logout')" class="text-sm inline-block p-3 text-gray-800" method="post" as="button">
+                            Log out
+                        </Link>
+                    </li> 
+                </template>
+                <template v-else>
+                    <li>
+                        <Link :href="route('login')" class="text-sm inline-block p-3 text-gray-800">
+                            Sign in
+                        </Link>
+                    </li>
+                    <li>
+                        <Link :href="route('register')" class="text-sm inline-block p-3 text-gray-800">
+                            Create account
+                        </Link>
+                    </li>
+                </template>
             </ul>
         </header>
         <main class="">
@@ -33,9 +46,7 @@
     </div>
 </template>
 
-<script>
-// import { Link } from '@inertiajs/inertia-vue3'
-export default {
+<script setup>
+import { Link } from '@inertiajs/vue3';
 
-}
 </script>
