@@ -12,6 +12,7 @@ class FileController extends Controller
     public function index()
     {
         $files = FileResource::collection(Auth::user()->files);
+        
         return Inertia::render('Files', [
             'files' => $files,
 

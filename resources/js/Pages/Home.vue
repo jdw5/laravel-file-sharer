@@ -3,7 +3,7 @@
         <div class="py-12 rounded-lg bg-gray-200 text-center ">
 
             <h1 class="text-3xl font-semibold mb-3 text-gray-800">
-                Heading s
+                Heading
             </h1>
             <p class="text-gray-500">
                 Upload files and share anywhere
