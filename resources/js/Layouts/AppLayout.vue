@@ -8,7 +8,7 @@
                     </Link>
                 </li>
                 <li>
-                    <Link href="" class="text-sm inline-block p-3 text-gray-800">
+                    <Link :href="route('files')" class="text-sm inline-block p-3 text-gray-800">
                         Your Files
                     </Link>
                 </li>

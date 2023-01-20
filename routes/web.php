@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -18,6 +19,7 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', HomeController::class)->name('home');
+Route::get('/files', [FileController::class, 'index'])->name('files');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
