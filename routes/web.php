@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\FileController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -19,6 +20,7 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', HomeController::class)->name('home');
+Route::get('/upload', UploadController::class)->name('uploader');
 Route::get('/files', [FileController::class, 'index'])->name('files');
 Route::post('/files/signed', [FileController::class, 'signed'])->name('files.signed');
 Route::post('/files', [FileController::class, 'store'])->name('files.store');
