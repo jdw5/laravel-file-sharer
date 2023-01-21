@@ -62,4 +62,13 @@ class FileController extends Controller
             'additionalData' => $object->getFormInputs()
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->user()
+            ->files()
+            ->firstOrCreate($request->only('path'), $request->only('name', 'size'));
+        
+        return redirect()->back();
+    }
 }

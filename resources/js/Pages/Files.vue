@@ -2,8 +2,7 @@
     <AppLayout>
         <div>
             <div class="mb-8">
-                <Uploader>
-                </Uploader>
+                <Uploader @onprocessfile="storeFile" />
             </div>
             <div>
                 <h2 class="pb-3 text-gray-700 border-b-2 font-mediun">
@@ -22,7 +21,6 @@
                 </template>
             </div>
         </div>
-        <button @click="send">Click me</button>
     </AppLayout>
 </template>
 
@@ -37,13 +35,13 @@ const props = defineProps({
     response: Object
 })
 
-const send = () => {
+const storeFile = (file) => {
     router.post('/files',
-        {
-            name: 'example',
-            extension: 'jpg'
-        }
-    )
+    {
+        name: file.filename,
+        size: file.fileSize,
+        path: file.serverId
+    })
 }
 </script>
 
