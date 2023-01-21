@@ -1,5 +1,4 @@
 <template>
-{{ response }}
     <AppLayout>
         <div>
             <div class="mb-8">
@@ -34,15 +33,15 @@ import Uploader from '@/Components/Uploader.vue'
 import { router } from '@inertiajs/vue3'
 
 const props = defineProps({
-    files: Array,
+    files: Object,
     response: Object
 })
 
 const send = () => {
-    router.post('/files/signed',
+    router.post('/files',
         {
-            name: 'name',
-            extension: 'png'
+            name: 'example',
+            extension: 'jpg'
         }
     )
 }

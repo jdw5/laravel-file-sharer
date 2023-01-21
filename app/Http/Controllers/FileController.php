@@ -45,7 +45,8 @@ class FileController extends Controller
             $client,
             config('filesystems.disks.s3.bucket'),
             ['key' => 'files/' . $filename],
-            [                ['bucket' => config('filesystems.disks.s3.bucket')],
+            [                
+                ['bucket' => config('filesystems.disks.s3.bucket')],
                 ['starts-with', '$key', 'files/']
             ]
         );
@@ -53,8 +54,12 @@ class FileController extends Controller
             'attributes' => $object->getFormAttributes(),
             'additionalData' => $object->getFormInputs()
         ]);
-
-        return redirect()->back()->with('response', $response);
         
+        // dd($object->getFormInputs());
+        // return $this->index()->with('response', $response);
+        return response()->json([
+            'attributes' => $object->getFormAttributes(),
+            'additionalData' => $object->getFormInputs()
+        ]);
     }
 }

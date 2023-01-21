@@ -4,9 +4,54 @@
 
 <script>
 import * as Filepond from 'filepond';
+import { router } from '@inertiajs/vue3'
+import axios from 'axios';
+
+
 export default {
     mounted() {
-        const pond = Filepond.create(this.$refs.file)
+        const pond = Filepond.create(this.$refs.file, {
+            allowRevert: false,
+            server: {
+                process: (fieldName, file, metadata, load, error, progress, abort) => {
+                    let form = new FormData()
+                    
+                    axios.post('/files', {
+                        name: metadata.fileInfo.name,
+                        extension: metadata.fileInfo.extension,
+                        size: metadata.fileInfo.size
+                    }).then((response) => {
+                        file.additionalData = response.data.additionalData
+
+                        for (let field in file.additionalData) {
+                            form.append(field, file.additionalData[field])
+                        }
+
+                        form.append('file', file)
+                        // console.log(file)
+                        axios.post(response.data.attributes.action, form, {
+                            onUploadProgress (e) {
+                                progress(e.lengthComputable, e.loaded, e.total)
+                            }
+                        }).then(() => {
+                            load(`${file.additionalData.key}`)
+                        })
+                    })
+                }  
+                
+            },
+            onaddfile: (error, file) => {
+                if (error) {
+                    return
+                }
+                
+                file.setMetadata('fileInfo', {
+                    name: file.filenameWithoutExtension,
+                    extension: file.fileExtension,
+                    size: file.fileSize
+                })
+            }
+        })
 
 
     },
