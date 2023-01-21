@@ -16,7 +16,7 @@
                 </template>
                 <template v-else>
                     <p class="mt-3 text-sm text-gray-900">
-                        No files
+                        No files.
                     </p>
                 </template>
             </div>

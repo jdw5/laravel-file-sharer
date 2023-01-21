@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use Aws\S3\S3Client;
 use Inertia\Inertia;
 use Aws\S3\PostObjectV4;
@@ -69,6 +70,15 @@ class FileController extends Controller
             ->files()
             ->firstOrCreate($request->only('path'), $request->only('name', 'size'));
         
+        return redirect()->back();
+    }
+
+    public function destroy(Request $request, File $file)
+    {
+        $this->authorize('destroy', $file);
+
+        $file->delete();
+
         return redirect()->back();
     }
 }
