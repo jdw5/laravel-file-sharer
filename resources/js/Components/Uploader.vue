@@ -9,13 +9,15 @@ import axios from 'axios';
 
 
 export default {
-    emits: ['onprocessfile'],
+    emits: ['onprocessfile', 'validation'],
 
     mounted() {
         const pond = Filepond.create(this.$refs.file, {
             allowRevert: false,
             server: {
                 process: (fieldName, file, metadata, load, error, progress, abort) => {
+                    this.$emit('validation', null)
+
                     let form = new FormData()
                     const cancelTokenSource = axios.CancelToken.source();
                     
@@ -41,6 +43,12 @@ export default {
                         }).then(() => {
                             load(`${file.additionalData.key}`)
                         })
+                    }).catch((e) => {
+                        if (e.response.status === 422) {
+                            this.$emit('validation', e.response.data)
+                        }
+
+                        abort()
                     })
 
                     return {

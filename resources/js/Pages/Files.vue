@@ -2,7 +2,13 @@
     <AppLayout>
         <div>
             <div class="mb-8">
-                <Uploader @onprocessfile="storeFile" />
+                <Uploader @onprocessfile="storeFile" 
+                    @validation="setValidationErrors"
+                />
+                <div v-if="errors" class="text-red-500 pt-2">
+
+                {{ errors.message }}
+                </div>
             </div>
             <div>
                 <h2 class="pb-3 text-gray-700 border-b-2 font-mediun">
@@ -29,6 +35,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import AppFile from '@/Components/AppFile.vue'
 import Uploader from '@/Components/Uploader.vue'
 import { router } from '@inertiajs/vue3'
+import { reactive } from 'vue'
 
 const props = defineProps({
     files: Object,
@@ -42,6 +49,13 @@ const storeFile = (file) => {
         size: file.fileSize,
         path: file.serverId
     })
+}
+
+const errors = reactive()
+
+const setValidationErrors = (message) => {
+    errors = message
+
 }
 </script>
 

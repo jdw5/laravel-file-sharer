@@ -31,7 +31,7 @@ class WithinUsage implements Rule
             return false;
         }
 
-        return true;
+        return false;
     }
 
     /**
