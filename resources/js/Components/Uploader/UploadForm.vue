@@ -12,9 +12,17 @@
             class="absolute inset-0 w-full h-full opacity-0"
             @change="fileSelected"
         >
-        <div class="text-gray-700">
-            Drop here to upload or <span class="text-indigo-500 hover:underline">browse</span>
-        </div>
+        <template v-if="dragging">
+            <div class="text-gray-700">
+                Release to upload {{ draggingCount }} files.
+            </div>
+        </template>
+        <template v-else>
+            <div class="text-gray-700">
+                Drop here to upload or <span class="text-indigo-500 hover:underline">browse</span>
+            </div>
+        </template>
+
     </form>
 </template>
 
@@ -25,20 +33,24 @@ export default {
     data() {
         return {
             dragging: false,
+            draggingCount: 0
         }
     },
     
     methods: {
         fileSelected(e) { 
             this.$emit('fileSelected', e.target.files)
+            this.dragging = false
         },
 
         handleDragOver(e) {
             this.dragging = true
+            this.draggingCount = e.dataTransfer.items.length
         },
 
         handleDragLeave(e) {
             this.dragging = false
+            this.draggingCount = 0
         }
     }
 

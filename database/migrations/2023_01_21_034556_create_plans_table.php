@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('price'); // Cents
-            $table->boolean('purchasable')->default(true);
+            $table->boolean('purchasable')->default(true); // Free plan attached by default
             $table->string('stripe_id')->nullable();
             $table->unsignedBigInteger('storage'); // Bytes
             $table->timestamps();

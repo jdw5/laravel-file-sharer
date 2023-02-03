@@ -1,6 +1,14 @@
 <template>
     <AppLayout>
-        <FileUploader />
+        {{ $page.props.auth }}
+        <FileUploader 
+            :options="{
+                baseUrl: '',
+            }"
+            :endpoints="{
+                'image/png' : ''
+            }"
+        />
     </AppLayout>
 </template>
 
