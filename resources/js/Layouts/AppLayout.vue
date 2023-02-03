@@ -16,6 +16,9 @@
                     <Link :href="route('uploader')" :class="route().current('uploader') ? 'text-indigo-500' : 'hover:text-gray-800'" class="inline-block p-3 text-sm font-medium leading-5 text-gray-600">
                         Uploader
                     </Link>
+                    <Link :href="route('user.usage')" :class="route().current('user.usage') ? 'text-indigo-500' : 'hover:text-gray-800'" class="inline-block p-3 text-sm font-medium leading-5 text-gray-600">
+                        Usage
+                    </Link>
                 </li>
             </ul>
             <ul class="flex items-center gap-x-2">

@@ -7,6 +7,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserUsageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Route::get('/files', [FileController::class, 'index'])->name('files');
 Route::post('/files/signed', [FileController::class, 'signed'])->name('files.signed');
 Route::post('/files', [FileController::class, 'store'])->name('files.store');
 Route::delete('/files/{file:uuid}', [FileController::class, 'destroy'])->name('files.destroy');
+
+Route::get('/user/usage', UserUsageController::class)->name('user.usage');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -18,6 +18,7 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
-        "filepond": "^4.30.4"
+        "filepond": "^4.30.4",
+        "filesize": "^10.0.6"
     }
 }

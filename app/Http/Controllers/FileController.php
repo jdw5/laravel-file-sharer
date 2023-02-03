@@ -18,6 +18,7 @@ class FileController extends Controller
     {
         $this->middleware(['auth', 'verified']);
     }
+    
     public function index()
     {
         $files = FileResource::collection(Auth::user()->files);
