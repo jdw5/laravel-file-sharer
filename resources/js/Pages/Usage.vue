@@ -8,8 +8,7 @@
                 {{ usePercent }} %
             </div>
 
-            {{ usage }}
-            
+            {{ usage }}            
         </div>
     </AppLayout>
 </template>
