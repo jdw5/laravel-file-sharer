@@ -46,6 +46,11 @@
                         </Link>
                     </li>
                 </template>
+                <li>
+                        <Link :href="route('plans')" :class="route().current('plans') ? 'text-indigo-500' : 'hover:text-gray-800'" class="inline-block p-3 text-sm font-medium leading-5 text-indigo-600">
+                            Upgrade
+                        </Link>
+                    </li>
             </ul>
         </header>
         <main class="">

@@ -34,13 +34,15 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import AppFile from '@/Components/AppFile.vue'
 import Uploader from '@/Components/Uploader.vue'
-import { router } from '@inertiajs/vue3'
+import { router, usePage } from '@inertiajs/vue3'
 import { reactive } from 'vue'
 
 const props = defineProps({
     files: Object,
     response: Object
 })
+
+const page = usePage()
 
 const storeFile = (file) => {
     router.post('/files',

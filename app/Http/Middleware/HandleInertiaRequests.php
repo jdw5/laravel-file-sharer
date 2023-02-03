@@ -41,6 +41,9 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            'stripe' => [
+                'key' => env('STRIPE_KEY')
+            ]
         ]);
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserUsageController;
@@ -28,6 +29,8 @@ Route::post('/files', [FileController::class, 'store'])->name('files.store');
 Route::delete('/files/{file:uuid}', [FileController::class, 'destroy'])->name('files.destroy');
 
 Route::get('/user/usage', UserUsageController::class)->name('user.usage');
+
+Route::get('/plans', PlanController::class)->name('plans');
 
 
 Route::get('/dashboard', function () {
