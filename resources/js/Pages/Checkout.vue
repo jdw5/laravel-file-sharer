@@ -15,7 +15,7 @@
                 Purchase
             </PrimaryButton>
         </form>
-        {{ formName }}
+        {{ props.plan }}
     </AppLayout>
 </template>
 
@@ -52,25 +52,40 @@ const storeFile = (file) => {
 }
 
 const card = ref(null)
-const formName = ref('')
+const formName = ref('Joshua')
 onMounted(() => {
     cardElement.mount(card.value)
 })
 
+const createSubscription = (setupIntent) => {
+    router.post('/subscription', {
+        plan: props.plan.data.slug,
+        token: setupIntent.payment_method
+    })
+
+}
 const submit = async() => {
+    console.log(props.intent.client_secret)
+    console.log(cardElement)
     await stripe.confirmCardSetup(
         props.intent.client_secret, {
             payment_method: {
                 card: cardElement,
                 billing_details: {
-                    name: formName
-                }
-            }
+                    name: formName.value,
+                },
+            },
         }
     ).then((result) => {
         console.log(result)
+        if (result.error) {
+            console.log(result)
+        } else {
+            createSubscription(result.setupIntent)
+        }
     })
 }
+
 
 </script>
 

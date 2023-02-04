@@ -10,6 +10,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserUsageController;
+use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::get('/user/usage', UserUsageController::class)->name('user.usage');
 Route::get('/plans', PlanController::class)->name('plans');
 
 Route::get('/checkout/{plan:slug?}', CheckoutController::class)->name('checkout');
+
+Route::post('/subscription', [SubscriptionController::class, 'store'])->name('subscription');
 
 
 Route::get('/dashboard', function () {
