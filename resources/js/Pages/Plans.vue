@@ -1,10 +1,14 @@
 <template>
     <AppLayout>
         <div class="space-y-2">
-            <AppPlan v-for="plan in plans.data"
+            <Link v-for="plan in plans.data"
                 :key="plan.slug"
-                :plan="plan"
-            />
+                :href="route('checkout', plan.slug)"
+            >
+                <AppPlan 
+                    :plan="plan"
+                />
+            </Link>
         </div>
     </AppLayout>
 </template>
@@ -14,7 +18,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import AppFile from '@/Components/AppFile.vue'
 import AppPlan from '@/Components/AppPlan.vue'
 import Uploader from '@/Components/Uploader.vue'
-import { router, usePage } from '@inertiajs/vue3'
+import { router, usePage, Link } from '@inertiajs/vue3'
 import { reactive, computed } from 'vue'
 
 const props = defineProps({

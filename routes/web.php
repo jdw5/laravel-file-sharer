@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserUsageController;
 
 /*
@@ -31,6 +32,8 @@ Route::delete('/files/{file:uuid}', [FileController::class, 'destroy'])->name('f
 Route::get('/user/usage', UserUsageController::class)->name('user.usage');
 
 Route::get('/plans', PlanController::class)->name('plans');
+
+Route::get('/checkout/{plan:slug?}', CheckoutController::class)->name('checkout');
 
 
 Route::get('/dashboard', function () {
