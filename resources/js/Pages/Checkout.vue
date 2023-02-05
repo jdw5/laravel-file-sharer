@@ -15,7 +15,7 @@
                 Purchase
             </PrimaryButton>
         </form>
-        {{ props.plan }}
+        {{ page.props.auth.user }}
     </AppLayout>
 </template>
 
@@ -65,8 +65,6 @@ const createSubscription = (setupIntent) => {
 
 }
 const submit = async() => {
-    console.log(props.intent.client_secret)
-    console.log(cardElement)
     await stripe.confirmCardSetup(
         props.intent.client_secret, {
             payment_method: {
@@ -77,7 +75,6 @@ const submit = async() => {
             },
         }
     ).then((result) => {
-        console.log(result)
         if (result.error) {
             console.log(result)
         } else {

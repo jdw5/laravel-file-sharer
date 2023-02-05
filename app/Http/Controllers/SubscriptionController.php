@@ -16,13 +16,14 @@ class SubscriptionController extends Controller
     {
         // validate
         $plan = Plan::where('slug', $request->get('plan'))->first();
+        
         if (!$plan) {
             return redirect()->back();
         }
-        $subscription = $request->user()->newSubscription('default', $plan->stripe_id)
+        $subscription = $request->user()
+            ->newSubscription('default', $plan->stripe_id)
             ->create($request->token);
         
-        $subscription->stripe_plan = $plan->id;
-        $subscription->save();
+        return redirect()->route('user.account');
     }
 }

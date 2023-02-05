@@ -7,6 +7,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserUsageController;
@@ -37,6 +38,9 @@ Route::get('/plans', PlanController::class)->name('plans');
 Route::get('/checkout/{plan:slug?}', CheckoutController::class)->name('checkout');
 
 Route::post('/subscription', [SubscriptionController::class, 'store'])->name('subscription');
+
+Route::get('/account', AccountController::class)->name('user.account');
+Route::get('/swap-plan', SwapController::class)->name('user.account.swap');
 
 
 Route::get('/dashboard', function () {

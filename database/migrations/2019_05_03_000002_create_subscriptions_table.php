@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('stripe_plan')->nullable();
             $table->string('name');
             $table->string('stripe_id')->unique();
             $table->string('stripe_status');
@@ -23,7 +22,6 @@ return new class extends Migration
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('ends_at')->nullable();
             $table->timestamps();
-
             $table->index(['user_id', 'stripe_status']);
         });
     }

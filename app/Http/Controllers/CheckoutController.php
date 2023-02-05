@@ -6,6 +6,7 @@ use App\Models\Plan;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Resources\PlanResource;
+use Laravel\Cashier\Subscription;
 
 class CheckoutController extends Controller
 {

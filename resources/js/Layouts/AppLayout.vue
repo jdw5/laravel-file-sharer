@@ -24,7 +24,7 @@
             <ul class="flex items-center gap-x-2">
                 <template v-if="$page.props.auth.user">
                     <li>
-                        <Link :href="route('profile.edit')" class="inline-block p-3 text-sm font-medium leading-5 text-gray-600">
+                        <Link :href="route('user.account')" class="inline-block p-3 text-sm font-medium leading-5 text-gray-600" :class="route().current('user.account') ? 'text-indigo-500' : 'hover:text-gray-800'">
                             Account
                         </Link>
                     </li> 

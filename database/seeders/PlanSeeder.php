@@ -30,6 +30,7 @@ class PlanSeeder extends Seeder
             'price' => 400,
             'purchasable' => true,
             'storage' => 10485760,
+            'stripe_id' => 'price_1MSY0TBi85ZBUe6GuGz69xq6',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -39,6 +40,7 @@ class PlanSeeder extends Seeder
             'price' => 800,
             'purchasable' => true,
             'storage' => 15728640,
+            'stripe_id' => 'price_1MSXzlBi85ZBUe6GzvnviEEi',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
