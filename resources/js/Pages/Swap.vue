@@ -1,30 +1,28 @@
 <template>
     <AppLayout>
         <div>
-            <h2 class="pb-3 text-gray-700 border-b-2 font-mediun">
-                Subscription
-            </h2>
-            <div class="mt-3 text-sm">
-                <p>
-                    You're on the {{plan.name}} plan.
-                </p>
-                <Link href="#" class="pt-4 block text-indigo-500">
-                    Change Plan
-                </Link>
-            </div>
+            <form action="">
+                <div class="mb-6">
+                    <AppPlan v-for="plan in plans.data" :key="plan.slug" :plan="plan" />
+                </div>
+                <PrimaryButton type="submit">
+                    Change
+                </PrimaryButton>
+            </form>
         </div>
     </AppLayout>
 </template>
 
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import AppPlan from '@/Components/AppPlan.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import { router, usePage, Link } from '@inertiajs/vue3'
 import { reactive, computed, onMounted, ref } from 'vue'
 
 
 const props = defineProps({
-    plan: Object,
+    plans: Object,
 })
 
 const page = usePage()

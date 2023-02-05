@@ -8,7 +8,7 @@
                 <p>
                     You're on the {{plan.name}} plan.
                 </p>
-                <Link href="#" class="pt-4 block text-indigo-500">
+                <Link :href="route('user.account.swap')" class="pt-4 block text-indigo-500">
                     Change Plan
                 </Link>
             </div>
