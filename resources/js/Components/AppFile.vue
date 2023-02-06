@@ -4,9 +4,7 @@
             {{ file.name }}
         </div>
         <div class="flex items-center -mr-3">
-            <a href="" class="inline-block p-3 text-sm font-medium text-indigo-500">
-                Shareable link
-            </a>
+            <AppFileLink :file="file" />
             <button @click="deleteFile" class="inline-block p-3 text-sm font-medium text-pink-500">
                 Delete
             </button>
@@ -16,7 +14,11 @@
 
 <script>
 import { router } from '@inertiajs/vue3';
+import AppFileLink from '@/Components/AppFileLink.vue';
 export default {
+    components: {
+        AppFileLink
+    },
 
     props: {
         file: {

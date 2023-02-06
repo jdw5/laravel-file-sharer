@@ -30,11 +30,11 @@ class FileController extends Controller
         ]);
     }
 
-    public function signed(FileSignedRequest $request) 
+    // public function signed(FileSignedRequest $request) 
+    public function signed(Request $request) 
     {
-
+        // dd($request);
         $filename = md5($request->name . microtime() . '.' . $request->extension);
-
         // $client = Storage::disk('s3')->getDriver()->getAdapter()->getClient();
         $client = S3Client::factory([
             'credentials' => [
@@ -58,7 +58,7 @@ class FileController extends Controller
             'attributes' => $object->getFormAttributes(),
             'additionalData' => $object->getFormInputs()
         ]);
-        
+        dd($response);
         // dd($object->getFormInputs());
         // return $this->index()->with('response', $response);
         return response()->json([

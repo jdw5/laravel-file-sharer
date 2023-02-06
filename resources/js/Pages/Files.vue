@@ -3,12 +3,11 @@
         <div>
             <div class="mb-8">
                 <Uploader @onprocessfile="storeFile" 
-                    @validation="setValidationErrors"
                 />
-                <div v-if="errors" class="text-red-500 pt-2">
+                <!-- <div v-if="errors" class="text-red-500 pt-2">
 
-                {{ errors.message }}
-                </div>
+                    {{ errors.message }}
+                </div> -->
             </div>
             <div>
                 <h2 class="pb-3 text-gray-700 border-b-2 font-mediun">
@@ -53,12 +52,12 @@ const storeFile = (file) => {
     })
 }
 
-const errors = reactive()
+// const errors = reactive()
 
-const setValidationErrors = (message) => {
-    errors = message
+// const setValidationErrors = (message) => {
+//     errors = message
 
-}
+// }
 </script>
 
 <style>
