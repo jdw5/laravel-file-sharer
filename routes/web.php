@@ -39,6 +39,7 @@ Route::get('/plans', PlanController::class)->name('plans');
 Route::get('/checkout/{plan:slug?}', CheckoutController::class)->name('checkout');
 
 Route::post('/subscription', [SubscriptionController::class, 'store'])->name('subscription');
+Route::patch('/subscription', [SubscriptionController::class, 'update'])->name('subscription.update');
 
 Route::get('/account', AccountController::class)->name('user.account');
 Route::get('/swap-plan', [SwapPlanController::class, 'index'])->name('user.account.swap');

@@ -26,4 +26,14 @@ class SubscriptionController extends Controller
         
         return redirect()->route('user.account');
     }
+
+    public function update(Request $request)
+    {
+        // validate
+
+        $plan = Plan::whereSlug($request->plan)->first();
+        $request->user()->subscription('default')->swap($plan->stripe_id);
+        return redirect()->route('user.account');
+        
+    }
 }

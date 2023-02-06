@@ -23,7 +23,6 @@
                     No available plans for you to swap to as you have too much storage.
                 </p>
             </form>
-            {{ availablePlans }}
         </div>
     </AppLayout>
 </template>
@@ -48,7 +47,7 @@ const form = useForm({
 const page = usePage()
 
 const swap = () => {
-
+    router.patch('/subscription', form)
 }
 
 const availablePlans = computed(() => {
