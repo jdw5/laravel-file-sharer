@@ -10,6 +10,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\FileLinkController;
 use App\Http\Controllers\SwapPlanController;
 use App\Http\Controllers\UserUsageController;
 use App\Http\Controllers\SubscriptionController;
@@ -31,7 +32,7 @@ Route::get('/files', [FileController::class, 'index'])->name('files');
 Route::post('/files/signed', [FileController::class, 'signed'])->name('files.signed');
 Route::post('/files', [FileController::class, 'store'])->name('files.store');
 Route::delete('/files/{file:uuid}', [FileController::class, 'destroy'])->name('files.destroy');
-
+Route::post('/files/{file:uuid}/links', [FileLinkController::class, 'store']);
 Route::get('/user/usage', UserUsageController::class)->name('user.usage');
 
 Route::get('/plans', PlanController::class)->name('plans');
