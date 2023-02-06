@@ -9,16 +9,21 @@
                     >
                         <input type="radio" name="plan" :id="`plan_${plan.slug}`"
                             v-model="form.plan" :value="plan.slug"
+                            v-if="availablePlans.find(p => p.slug === plan.slug)"
                         >
                         <label class="flex-grow" :for="`plan_${plan.slug}`">
                             <AppPlan :plan="plan" />
                         </label>
                     </div>
                 </div>
-                <PrimaryButton type="submit">
+                <PrimaryButton type="submit" v-if="availablePlans.length">
                     Change
                 </PrimaryButton>
+                <p v-else class="text-sm">
+                    No available plans for you to swap to as you have too much storage.
+                </p>
             </form>
+            {{ availablePlans }}
         </div>
     </AppLayout>
 </template>
@@ -33,7 +38,8 @@ import { reactive, computed, onMounted, ref } from 'vue'
 
 const props = defineProps({
     plans: Object,
-    currentPlan: String,
+    upgrades: Object,
+    currentPlan: Object,
 })
 
 const form = useForm({
@@ -44,6 +50,10 @@ const page = usePage()
 const swap = () => {
 
 }
+
+const availablePlans = computed(() => {
+    return props.plans.data.filter(p => p.slug !== props.currentPlan.slug && props.upgrades[p.slug]  )
+})
 
 
 </script>

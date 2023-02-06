@@ -70,4 +70,9 @@ class User extends Authenticatable
         )->whereNull('subscriptions.ends_at')
         ->withDefault(Plan::free()->toArray());
     }
+
+    public function canDownGradeToPlan(Plan $plan)
+    {
+        return $this->usage() <= $plan->storage;
+    }
 }
