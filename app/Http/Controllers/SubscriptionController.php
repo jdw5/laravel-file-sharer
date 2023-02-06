@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
@@ -14,13 +15,18 @@ class SubscriptionController extends Controller
 
     public function store(Request $request)
     {
-        // validate
+
+        $this->validate($request, [
+            'token' => ['required'],
+        ]);
+
         $plan = Plan::where('slug', $request->get('plan'))->first();
         
         if (!$plan) {
             return redirect()->back();
         }
-        $subscription = $request->user()
+
+        $request->user()
             ->newSubscription('default', $plan->stripe_id)
             ->create($request->token);
         
@@ -32,6 +38,20 @@ class SubscriptionController extends Controller
         // validate
 
         $plan = Plan::whereSlug($request->plan)->first();
+        
+        if (!$plan) {
+            return redirect()->back();
+        }
+        
+        if ($request->user()->canDowngradeToPlan($plan))
+        {
+            throw new Exception();
+        }
+        if (!$plan->purchasable) {
+            $request->user()->subscription('default')->cancel();
+            return;
+        }
+
         $request->user()->subscription('default')->swap($plan->stripe_id);
         return redirect()->route('user.account');
         
